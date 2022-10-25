@@ -1,23 +1,31 @@
 package peaksoft.model;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Table
+@Entity
+@Table (name = "users")
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 public class User {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column
+    @Column (name = "name")
     private String name;
 
-    @Column
+    @Column (name = "last_name")
     private String lastName;
 
-    @Column
+    @Column (name = "age")
     private Byte age;
-
-    public User() {
-    }
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
@@ -57,4 +65,13 @@ public class User {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
